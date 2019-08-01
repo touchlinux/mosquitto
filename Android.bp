@@ -1,0 +1,36 @@
+
+cc_library_shared {
+    name: "libmosquitto",
+
+    srcs: [
+        "lib/logging_mosq.c",
+        "lib/memory_mosq.c",
+	"lib/messages_mosq.c",
+        "lib/mosquitto.c",
+        "lib/net_mosq.c",
+        "lib/read_handle.c",
+        "lib/read_handle_client.c",
+        "lib/read_handle_shared.c",
+        "lib/send_client_mosq.c",
+        "lib/send_mosq.c",
+        "lib/socks_mosq.c",
+        "lib/srv_mosq.c",
+        "lib/thread_mosq.c",
+        "lib/time_mosq.c",
+        "lib/tls_mosq.c",
+        "lib/util_mosq.c",
+        "lib/will_mosq.c"
+    ],
+
+    stl: "none",
+
+    local_include_dirs: [ ".", "lib/", ],
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-DVERSION=\"1.4.15\"",
+    ],
+}
