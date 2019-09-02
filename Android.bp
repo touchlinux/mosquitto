@@ -5,7 +5,7 @@ cc_library_shared {
     srcs: [
         "lib/logging_mosq.c",
         "lib/memory_mosq.c",
-	"lib/messages_mosq.c",
+        "lib/messages_mosq.c",
         "lib/mosquitto.c",
         "lib/net_mosq.c",
         "lib/read_handle.c",
@@ -24,12 +24,51 @@ cc_library_shared {
 
     stl: "none",
 
-    local_include_dirs: [ ".", "lib/", ],
+    local_include_dirs: [ "lib" ],
+    export_include_dirs: [ "lib" ],
 
     cflags: [
         "-Wall",
         "-Werror",
         "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-DVERSION=\"1.4.15\"",
+    ],
+}
+
+cc_binary {
+    name: "mosquitto_pub",
+    srcs: [
+        "client/client_shared.c",
+        "client/pub_client.c",
+    ],
+    shared_libs: [
+        "libmosquitto",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wno-unused-variable",
+        "-Wno-unused-function",
+        "-Wno-unused-parameter",
+        "-DVERSION=\"1.4.15\"",
+    ],
+}
+
+cc_binary {
+    name: "mosquitto_sub",
+    srcs: [
+        "client/client_shared.c",
+        "client/sub_client.c",
+    ],
+    shared_libs: [
+        "libmosquitto",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wno-unused-variable",
+        "-Wno-unused-function",
         "-Wno-unused-parameter",
         "-DVERSION=\"1.4.15\"",
     ],
